@@ -1,21 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropertyItem from './PropertyItem';
 
-const PropertyList = ({ filters }) => {
-  const [properties, setProperties] = useState([]);
-
-  useEffect(() => {
-    const storedProperties = JSON.parse(localStorage.getItem('properties')) || [];
-    setProperties(storedProperties);
-  }, []);
-
-  // Function for delete property
-  const deleteProperty = (id) => {
-    const updatedProperties = properties.filter((property) => property.id !== id);
-    setProperties(updatedProperties);
-    localStorage.setItem('properties', JSON.stringify(updatedProperties));
-  };
-  
+const PropertyList = ({ filters, properties, deleteProperty }) => {
+  // Filter properties
   const filteredProperties = properties.filter((property) => {
     const matchesType = !filters.type || property.type === filters.type;
     const matchesStatus = !filters.status || property.status === filters.status;

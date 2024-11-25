@@ -13,10 +13,12 @@ const Dashboard = () => {
   const [properties, setProperties] = useState(
     JSON.parse(localStorage.getItem('properties')) || []
   );
+
+  // Update localStorage whenever properties change
   useEffect(() => {
-    const storedProperties = JSON.parse(localStorage.getItem('properties')) || [];
-    setProperties(storedProperties);
-  }, []);
+    localStorage.setItem('properties', JSON.stringify(properties));
+  }, [properties]);
+
 
   const addProperty = (newProperty) => {
     const updatedProperties = [...properties, newProperty];
@@ -35,11 +37,10 @@ const Dashboard = () => {
     });
   };
 
-  const deleteProperty = (id) => {
+   // Delete property
+   const deleteProperty = (id) => {
     const updatedProperties = properties.filter((property) => property.id !== id);
-    setProperties(updatedProperties);
-    localStorage.setItem('properties', JSON.stringify(updatedProperties));
-  };
+    setProperties(updatedProperties); }
 
   const checkIns = properties.filter((property) => property.status === 'Available').length;
   const checkOuts = properties.filter((property) => property.status === 'Rented').length;
