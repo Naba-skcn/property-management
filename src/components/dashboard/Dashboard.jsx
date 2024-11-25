@@ -8,10 +8,67 @@ import { toast } from 'react-toastify';
 import 'chart.js/auto';
 import 'react-toastify/dist/ReactToastify.css';
 
+const initialData = [
+  {
+    id: 1,
+    title: 'Modern Apartment',
+    type: 'Apartment',
+    status: 'Available',
+    rent: 1200,
+    date: '2024-11-20',
+    image: 'https://plus.unsplash.com/premium_photo-1674676471417-07f613528a94?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8TW9kZXJuJTIwQXBhcnRtZW50fGVufDB8fDB8fHww',
+  },
+  {
+    id: 2,
+    title: 'Luxury Villa',
+    type: 'House',
+    status: 'Rented',
+    rent: 2500,
+    date: '2024-11-18',
+    image: 'https://images.unsplash.com/photo-1717167398882-15d1cefd22f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fEx1eHVyeSUyMFZpbGxhfGVufDB8fDB8fHww',
+  },
+  {
+    id: 3,
+    title: 'Cozy Condo',
+    type: 'Apartment',
+    status: 'Available',
+    rent: 800,
+    date: '2024-11-15',
+    image: 'https://images.unsplash.com/photo-1598242930255-c25f98ff11e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fENvenklMjBDb25kb3xlbnwwfHwwfHx8MA%3D%3D',
+  },
+  {
+    id: 4,
+    title: 'Commercial Office Space',
+    type: 'Commercial',
+    status: 'Available',
+    rent: 3000,
+    date: '2024-11-10',
+    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q29tbWVyY2lhbCUyME9mZmljZSUyMFNwYWNlfGVufDB8fDB8fHww',
+  },
+  {
+    id: 5,
+    title: 'Suburban House',
+    type: 'House',
+    status: 'Rented',
+    rent: 1500,
+    date: '2024-11-05',
+    image: 'https://images.unsplash.com/photo-1721149122657-7b5440f39160?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8U3VidXJiYW4lMjBIb3VzZXxlbnwwfHwwfHx8MA%3D%3D',
+  },
+  {
+    id: 6,
+    title: 'Downtown Loft',
+    type: 'Apartment',
+    status: 'Available',
+    rent: 1800,
+    date: '2024-11-12',
+    image: 'https://media.istockphoto.com/id/2157202531/photo/industrial-loft-in-downtown-los-angeles.webp?a=1&b=1&s=612x612&w=0&k=20&c=mRNe6-uNliRbJR7IgQO2I1C7zTa-lRLTLq6Ho-_CyqQ=',
+  },
+];
+
 const Dashboard = () => {
   const [filters, setFilters] = useState({ type: '', status: '' });
   const [properties, setProperties] = useState(
-    JSON.parse(localStorage.getItem('properties')) || []
+    JSON.parse(localStorage.getItem('properties')) || initialData
   );
 
   // Update localStorage whenever properties change
