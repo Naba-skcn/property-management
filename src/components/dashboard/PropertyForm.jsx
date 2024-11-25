@@ -8,6 +8,7 @@ const PropertyForm = ({ addProperty }) => {
   const [rent, setRent] = useState('');
   const [date, setDate] = useState('');
   const [image, setImage] = useState('');
+  const [dateError, setDateError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +16,17 @@ const PropertyForm = ({ addProperty }) => {
     if (!title || !type || !status || !rent || !date || !image) {
       alert('Please fill in all fields.');
       return;
+    }
+
+    // Validate the date to make sure it's not in the future
+    const currentDate = new Date();
+    const selectedDate = new Date(date);
+
+    if (selectedDate > currentDate) {
+      setDateError('Date cannot be in the future.');
+      return;
+    } else {
+      setDateError('');
     }
 
     const newProperty = {
@@ -40,7 +52,7 @@ const PropertyForm = ({ addProperty }) => {
     <Card className="shadow-xl rounded-lg p-6">
       <CardContent>
         <Typography variant="h5" className="font-semibold text-gray-800 mb-6">Add a New Property</Typography>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
 
           {/* Title Field */}
@@ -121,6 +133,8 @@ const PropertyForm = ({ addProperty }) => {
             onChange={(e) => setDate(e.target.value)}
             fullWidth
             required
+            error={dateError !== ''}
+            helperText={dateError}
             InputLabelProps={{
               shrink: true,
               className: 'text-gray-600',
