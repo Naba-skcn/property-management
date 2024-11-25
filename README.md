@@ -1,4 +1,4 @@
-# Dashboard Project
+# RentTrack
 Live Site: ( https://cheery-queijadas-cc20a6.netlify.app/ )
 This is a property management dashboard where users can add new properties with details such as title, type, status, rent, and date added. The project uses **React.js** for the frontend and **Material UI** for the UI components.
 
